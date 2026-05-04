@@ -8,18 +8,21 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <style>
   :root {
-    --neon: #00f5ff;
-    --neon2: #7b2fff;
+    --neon: #d4a017;
+    --neon2: #b8860b;
     --gold: #ffd700;
-    --dark: #020510;
-    --card-bg: rgba(0,245,255,0.04);
-    --border: rgba(0,245,255,0.15);
+    --dark: #0a0800;
+    --card-bg: rgba(212,160,23,0.05);
+    --border: rgba(212,160,23,0.2);
+    --accent: #f5c842;
+    --deep-gold: #c8860a;
+    --rose-gold: #e8b86d;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--dark);
-    color: #e0f7ff;
+    background: #0a0800;
+    color: #fef3d0;
     font-family: 'Rajdhani', sans-serif;
     overflow-x: hidden;
     cursor: none;
@@ -62,7 +65,7 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.2rem 4rem;
-    background: rgba(2,5,16,0.7);
+    background: rgba(10,8,0,0.7);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     transition: all 0.3s;
@@ -71,14 +74,14 @@
     font-family: 'Orbitron', monospace;
     font-size: 1.6rem; font-weight: 900;
     letter-spacing: 0.3em;
-    background: linear-gradient(90deg, var(--neon), var(--neon2));
+    background: linear-gradient(90deg, var(--gold), var(--accent));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     text-shadow: none;
   }
   .logo span { color: var(--gold); -webkit-text-fill-color: var(--gold); }
   nav ul { list-style: none; display: flex; gap: 2.5rem; }
   nav ul a {
-    text-decoration: none; color: #a0c4cf;
+    text-decoration: none; color: #c9a84c;
     font-family: 'Rajdhani'; font-weight: 600; font-size: 0.95rem;
     letter-spacing: 0.15em; text-transform: uppercase;
     transition: color 0.3s;
@@ -123,16 +126,16 @@
   }
   .hero-title .line1 {
     display: block;
-    background: linear-gradient(135deg, #fff 30%, var(--neon));
+    background: linear-gradient(135deg, #fff8e7 30%, var(--gold));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .hero-title .line2 {
     display: block;
-    background: linear-gradient(135deg, var(--neon2), var(--gold));
+    background: linear-gradient(135deg, var(--deep-gold), var(--rose-gold));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .hero-desc {
-    font-size: 1.15rem; color: #7da8b8; max-width: 560px;
+    font-size: 1.15rem; color: #b8963e; max-width: 560px;
     line-height: 1.7; margin-bottom: 3rem;
     animation: fadeDown 1s 0.4s ease both;
     font-weight: 300; letter-spacing: 0.03em;
@@ -143,29 +146,29 @@
   }
   .btn-primary {
     padding: 0.9rem 2.5rem;
-    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    background: linear-gradient(135deg, var(--gold), var(--deep-gold));
     border: none; color: #000; font-family: 'Orbitron';
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
     text-transform: uppercase; cursor: pointer;
     clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
     position: relative; transition: all 0.3s;
-    box-shadow: 0 0 30px rgba(0,245,255,0.3);
+    box-shadow: 0 0 30px rgba(212,160,23,0.3);
   }
   .btn-primary:hover {
     transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 0 50px rgba(0,245,255,0.6);
+    box-shadow: 0 0 50px rgba(212,160,23,0.6);
   }
   .btn-secondary {
     padding: 0.9rem 2.5rem;
     background: transparent; border: 1px solid var(--border);
-    color: #a0c4cf; font-family: 'Orbitron';
+    color: #c9a84c; font-family: 'Orbitron';
     font-size: 0.75rem; letter-spacing: 0.2em; cursor: pointer;
     clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
     transition: all 0.3s;
   }
   .btn-secondary:hover {
     border-color: var(--neon); color: var(--neon);
-    box-shadow: 0 0 20px rgba(0,245,255,0.2);
+    box-shadow: 0 0 20px rgba(212,160,23,0.2);
     transform: translateY(-3px);
   }
 
@@ -184,7 +187,7 @@
     display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
     animation: fadeIn 2s 1.5s both;
   }
-  .scroll-ind span { font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 0.3em; color: #456; }
+  .scroll-ind span { font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 0.3em; color: #7a5c1e; }
   .scroll-line {
     width: 1px; height: 50px; background: linear-gradient(to bottom, var(--neon), transparent);
     animation: scrollPulse 2s infinite;
@@ -202,16 +205,16 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;
-    background: rgba(0,245,255,0.02);
+    background: rgba(212,160,23,0.02);
   }
   .stat-item { text-align: center; }
   .stat-num {
     font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 900;
-    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    background: linear-gradient(135deg, var(--gold), var(--deep-gold));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     display: block;
   }
-  .stat-label { font-size: 0.85rem; letter-spacing: 0.2em; color: #567; text-transform: uppercase; margin-top: 0.3rem; }
+  .stat-label { font-size: 0.85rem; letter-spacing: 0.2em; color: #8a6a2a; text-transform: uppercase; margin-top: 0.3rem; }
 
   /* SERVICES */
   .services { padding: 8rem 4rem; }
@@ -228,7 +231,7 @@
     font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
   }
   .section-title em { font-style: normal; color: var(--neon); }
-  .section-desc { color: #567; max-width: 500px; line-height: 1.7; margin-bottom: 4rem; font-size: 1rem; }
+  .section-desc { color: #8a6a2a; max-width: 500px; line-height: 1.7; margin-bottom: 4rem; font-size: 1rem; }
 
   .services-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -245,34 +248,34 @@
   }
   .service-card::before {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,245,255,0.08), rgba(123,47,255,0.08));
+    background: linear-gradient(135deg, rgba(212,160,23,0.08), rgba(184,134,11,0.08));
     opacity: 0; transition: opacity 0.4s;
   }
   .service-card::after {
     content: ''; position: absolute;
     top: -50%; left: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(0,245,255,0.1) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(212,160,23,0.1) 0%, transparent 60%);
     opacity: 0; transition: opacity 0.4s;
   }
-  .service-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(0,245,255,0.4); }
+  .service-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(212,160,23,0.4); }
   .service-card:hover::before { opacity: 1; }
   .service-card:hover::after { opacity: 1; }
   .service-icon {
     font-size: 2.5rem; margin-bottom: 1.5rem; display: block;
-    filter: drop-shadow(0 0 10px rgba(0,245,255,0.5));
+    filter: drop-shadow(0 0 10px rgba(212,160,23,0.5));
     transition: transform 0.3s;
   }
   .service-card:hover .service-icon { transform: scale(1.2) rotate(5deg); }
   .service-num {
     position: absolute; top: 1.5rem; right: 1.5rem;
     font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 0.2em;
-    color: rgba(0,245,255,0.2);
+    color: rgba(212,160,23,0.2);
   }
   .service-title {
     font-family: 'Orbitron'; font-size: 1rem; font-weight: 700;
-    color: #e0f7ff; margin-bottom: 1rem; letter-spacing: 0.05em;
+    color: #fef3d0; margin-bottom: 1rem; letter-spacing: 0.05em;
   }
-  .service-desc { color: #567; font-size: 0.9rem; line-height: 1.6; }
+  .service-desc { color: #8a6a2a; font-size: 0.9rem; line-height: 1.6; }
   .service-arrow {
     display: inline-block; margin-top: 1.5rem; color: var(--neon);
     font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 0.2em;
@@ -290,23 +293,23 @@
     border: 1px solid var(--border);
     padding: 2.5rem; position: relative; overflow: hidden;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: rgba(2,5,16,0.8);
+    background: rgba(10,8,0,0.8);
     clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
   }
   .price-card.featured {
-    border-color: rgba(0,245,255,0.5);
-    background: rgba(0,245,255,0.04);
+    border-color: rgba(212,160,23,0.5);
+    background: rgba(212,160,23,0.04);
     transform: scale(1.03);
   }
   .price-card.featured::before {
     content: 'MOST POPULAR';
     position: absolute; top: 0; right: 0;
-    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    background: linear-gradient(135deg, var(--gold), var(--deep-gold));
     color: #000; font-family: 'Orbitron'; font-size: 0.55rem;
     letter-spacing: 0.2em; padding: 0.4rem 1rem;
     clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%);
   }
-  .price-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(0,245,255,0.5); }
+  .price-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(212,160,23,0.5); }
   .price-card.featured:hover { transform: scale(1.05) translateY(-8px); }
   .price-tier {
     font-family: 'Orbitron'; font-size: 0.65rem; letter-spacing: 0.4em;
@@ -317,26 +320,26 @@
     margin-bottom: 0.3rem; color: #fff;
   }
   .price-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 0.5rem; color: var(--neon); }
-  .price-currency { font-size: 0.85rem; color: #567; letter-spacing: 0.1em; margin-bottom: 2rem; }
+  .price-currency { font-size: 0.85rem; color: #8a6a2a; letter-spacing: 0.1em; margin-bottom: 2rem; }
   .price-features { list-style: none; margin-bottom: 2rem; }
   .price-features li {
-    padding: 0.6rem 0; border-bottom: 1px solid rgba(0,245,255,0.06);
-    font-size: 0.9rem; color: #8ab; display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.6rem 0; border-bottom: 1px solid rgba(212,160,23,0.06);
+    font-size: 0.9rem; color: #c4a44a; display: flex; align-items: center; gap: 0.8rem;
   }
   .price-features li::before { content: '◆'; color: var(--neon); font-size: 0.5rem; flex-shrink: 0; }
-  .price-features li.disabled { color: #345; }
-  .price-features li.disabled::before { color: #234; }
+  .price-features li.disabled { color: #6b4e1a; }
+  .price-features li.disabled::before { color: #5a3d10; }
   .btn-price {
     width: 100%; padding: 0.9rem;
     background: transparent; border: 1px solid var(--border);
-    color: #a0c4cf; font-family: 'Orbitron'; font-size: 0.7rem;
+    color: #c9a84c; font-family: 'Orbitron'; font-size: 0.7rem;
     letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
     clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   }
   .btn-price:hover, .featured .btn-price {
-    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    background: linear-gradient(135deg, var(--gold), var(--deep-gold));
     border-color: transparent; color: #000;
-    box-shadow: 0 0 30px rgba(0,245,255,0.4);
+    box-shadow: 0 0 30px rgba(212,160,23,0.4);
   }
 
   /* PROCESS */
@@ -363,15 +366,15 @@
     font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900;
     color: var(--neon); background: var(--dark);
     transition: all 0.4s;
-    box-shadow: 0 0 20px rgba(0,245,255,0.1);
+    box-shadow: 0 0 20px rgba(212,160,23,0.1);
   }
   .step:hover .step-num {
-    background: rgba(0,245,255,0.1);
-    box-shadow: 0 0 40px rgba(0,245,255,0.4);
+    background: rgba(212,160,23,0.1);
+    box-shadow: 0 0 40px rgba(212,160,23,0.4);
     border-color: var(--neon);
   }
-  .step-title { font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; color: #e0f7ff; }
-  .step-desc { font-size: 0.85rem; color: #567; line-height: 1.5; }
+  .step-title { font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; color: #fef3d0; }
+  .step-desc { font-size: 0.85rem; color: #8a6a2a; line-height: 1.5; }
 
   /* CONTACT */
   .contact { padding: 8rem 4rem; background: rgba(0,0,0,0.4); }
@@ -384,9 +387,9 @@
     color: var(--neon); text-transform: uppercase;
   }
   .form-group input, .form-group select, .form-group textarea {
-    background: rgba(0,245,255,0.03);
+    background: rgba(212,160,23,0.03);
     border: 1px solid var(--border);
-    color: #e0f7ff; font-family: 'Rajdhani'; font-size: 1rem;
+    color: #fef3d0; font-family: 'Rajdhani'; font-size: 1rem;
     padding: 0.9rem 1.2rem; outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
@@ -394,7 +397,7 @@
   .form-group select { clip-path: none; }
   .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
     border-color: var(--neon);
-    box-shadow: 0 0 15px rgba(0,245,255,0.15);
+    box-shadow: 0 0 15px rgba(212,160,23,0.15);
   }
   .form-group textarea { resize: vertical; min-height: 120px; }
   .form-group select option { background: var(--dark); }
@@ -405,9 +408,9 @@
     display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
     background: rgba(0,0,0,0.5);
   }
-  .footer-copy { font-size: 0.8rem; color: #345; letter-spacing: 0.1em; }
+  .footer-copy { font-size: 0.8rem; color: #6b4e1a; letter-spacing: 0.1em; }
   .footer-links { display: flex; gap: 2rem; }
-  .footer-links a { font-size: 0.75rem; color: #456; text-decoration: none; letter-spacing: 0.1em; transition: color 0.3s; }
+  .footer-links a { font-size: 0.75rem; color: #7a5c1e; text-decoration: none; letter-spacing: 0.1em; transition: color 0.3s; }
   .footer-links a:hover { color: var(--neon); }
 
   /* WHATSAPP FLOAT */
@@ -459,13 +462,13 @@
   .hex-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 0; opacity: 0.03; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpolygon fill='none' stroke='%2300f5ff' stroke-width='1' points='30 3 57 19 57 52 30 68 3 52 3 19'/%3E%3Cpolygon fill='none' stroke='%2300f5ff' stroke-width='1' points='30 71 57 87 57 104 30 104 3 104 3 87'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpolygon fill='none' stroke='%23d4a017' stroke-width='1' points='30 3 57 19 57 52 30 68 3 52 3 19'/%3E%3Cpolygon fill='none' stroke='%23d4a017' stroke-width='1' points='30 71 57 87 57 104 30 104 3 104 3 87'/%3E%3C/svg%3E");
   }
 
   /* NOTIFICATION TOAST */
   .toast {
     position: fixed; bottom: 7rem; right: 2rem; z-index: 200;
-    background: rgba(0,245,255,0.1); border: 1px solid var(--neon);
+    background: rgba(212,160,23,0.1); border: 1px solid var(--neon);
     color: var(--neon); font-family: 'Orbitron'; font-size: 0.7rem;
     letter-spacing: 0.1em; padding: 1rem 1.5rem;
     clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
@@ -473,6 +476,32 @@
     backdrop-filter: blur(10px);
   }
   .toast.show { transform: translateX(0); }
+  /* 3D SHOWCASE */
+  .showcase-3d { padding: 8rem 4rem; }
+  .models-row {
+    display: flex; gap: 2.5rem; justify-content: center;
+    flex-wrap: wrap; margin-top: 4rem;
+  }
+  .model-card {
+    position: relative; width: 300px;
+    background: rgba(212,160,23,0.04);
+    border: 1px solid rgba(212,160,23,0.25);
+    padding: 1.5rem 1.5rem 1rem;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+  .model-card:hover {
+    border-color: rgba(212,160,23,0.6);
+    box-shadow: 0 0 40px rgba(212,160,23,0.2), inset 0 0 30px rgba(212,160,23,0.03);
+    transform: translateY(-12px) scale(1.02);
+  }
+  .model-canvas { display: block; width: 100%; height: 260px; border-radius: 2px; }
+  .model-label {
+    font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 0.3em;
+    color: var(--gold); text-align: center; margin-top: 1rem;
+    text-transform: uppercase;
+  }
 </style>
 </head>
 <body>
@@ -539,6 +568,29 @@
     <div class="stat-label">Support Hours</div>
   </div>
 </div>
+
+<div class="glow-line"></div>
+
+<!-- 3D SHOWCASE -->
+<section class="showcase-3d" id="showcase">
+  <div class="section-label">3D Technology</div>
+  <h2 class="section-title">Built in <em>Another Dimension</em></h2>
+  <p class="section-desc">We bring your brand to life with cutting-edge 3D design and interactive experiences that no one forgets.</p>
+  <div class="models-row">
+    <div class="model-card reveal">
+      <canvas class="model-canvas" id="model1" width="300" height="300"></canvas>
+      <div class="model-label">Web Architecture</div>
+    </div>
+    <div class="model-card reveal">
+      <canvas class="model-canvas" id="model2" width="300" height="300"></canvas>
+      <div class="model-label">Data Systems</div>
+    </div>
+    <div class="model-card reveal">
+      <canvas class="model-canvas" id="model3" width="300" height="300"></canvas>
+      <div class="model-label">Brand Identity</div>
+    </div>
+  </div>
+</section>
 
 <div class="glow-line"></div>
 
@@ -648,7 +700,7 @@
       <button class="btn-price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">GO ENTERPRISE</button>
     </div>
   </div>
-  <p style="text-align:center; margin-top: 2rem; color: #456; font-size: 0.85rem; letter-spacing: 0.1em;">All prices in PKR. Hosting & domain extra. Installment plans available.</p>
+  <p style="text-align:center; margin-top: 2rem; color: #7a5c1e; font-size: 0.85rem; letter-spacing: 0.1em;">All prices in PKR. Hosting & domain extra. Installment plans available.</p>
 </section>
 
 <div class="glow-line"></div>
@@ -688,7 +740,7 @@
   <div class="contact-inner">
     <div class="section-label" style="justify-content:center">Start a Project</div>
     <h2 class="section-title" style="text-align:center">Ready to <em>Launch?</em></h2>
-    <p style="color: #567; text-align:center; margin-bottom: 0; line-height:1.7">Fill in your details and we'll get back to you within 2 hours on WhatsApp.</p>
+    <p style="color: #8a6a2a; text-align:center; margin-bottom: 0; line-height:1.7">Fill in your details and we'll get back to you within 2 hours on WhatsApp.</p>
     <form class="contact-form" onsubmit="handleSubmit(event)">
       <div class="form-row">
         <div class="form-group">
@@ -762,7 +814,7 @@ function animCursor() {
 }
 animCursor();
 document.querySelectorAll('a, button, .service-card, .price-card').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.style.width = '36px'; cursor.style.height = '36px'; cursor.style.background = 'rgba(0,245,255,0.1)'; });
+  el.addEventListener('mouseenter', () => { cursor.style.width = '36px'; cursor.style.height = '36px'; cursor.style.background = 'rgba(212,160,23,0.1)'; });
   el.addEventListener('mouseleave', () => { cursor.style.width = '18px'; cursor.style.height = '18px'; cursor.style.background = 'transparent'; });
 });
 
@@ -787,7 +839,7 @@ function initStars() {
       speed: Math.random() * 0.3 + 0.05,
       brightness: Math.random(),
       twinkleSpeed: Math.random() * 0.02 + 0.005,
-      color: Math.random() > 0.8 ? '#a8d8ff' : Math.random() > 0.5 ? '#fff' : '#c8f0ff',
+      color: Math.random() > 0.8 ? '#ffd700' : Math.random() > 0.5 ? '#fff8e7' : '#f5c842',
       t: Math.random() * Math.PI * 2
     });
   }
@@ -847,7 +899,7 @@ function drawStars() {
 
     // Glow for brighter stars
     if (s.r > 1.2) {
-      ctx.shadowBlur = 6; ctx.shadowColor = '#00f5ff';
+      ctx.shadowBlur = 6; ctx.shadowColor = '#d4a017';
     } else {
       ctx.shadowBlur = 0;
     }
@@ -902,15 +954,15 @@ if (globe) {
 
     // Glow
     const grd = gc.createRadialGradient(GW/2, GH/2, GR*0.5, GW/2, GH/2, GR*1.4);
-    grd.addColorStop(0, 'rgba(0,245,255,0.06)');
-    grd.addColorStop(0.5, 'rgba(123,47,255,0.04)');
+    grd.addColorStop(0, 'rgba(212,160,23,0.08)');
+    grd.addColorStop(0.5, 'rgba(184,134,11,0.05)');
     grd.addColorStop(1, 'transparent');
     gc.beginPath(); gc.arc(GW/2, GH/2, GR*1.4, 0, Math.PI*2);
     gc.fillStyle = grd; gc.fill();
 
     // Outer ring
     gc.beginPath(); gc.arc(GW/2, GH/2, GR, 0, Math.PI*2);
-    gc.strokeStyle = 'rgba(0,245,255,0.12)'; gc.lineWidth = 1; gc.stroke();
+    gc.strokeStyle = 'rgba(212,160,23,0.12)'; gc.lineWidth = 1; gc.stroke();
 
     // Grid lines
     lines.forEach(pts => {
@@ -924,7 +976,7 @@ if (globe) {
           else gc.lineTo(x, y);
         } else { started = false; if (gc.currentPath !== undefined) gc.beginPath(); }
       });
-      gc.strokeStyle = 'rgba(0,245,255,0.08)'; gc.lineWidth = 0.5; gc.stroke();
+      gc.strokeStyle = 'rgba(212,160,23,0.08)'; gc.lineWidth = 0.5; gc.stroke();
     });
 
     // Dots
@@ -933,7 +985,7 @@ if (globe) {
       if (z > 0) {
         const alpha = z / GR;
         gc.beginPath(); gc.arc(x, y, 1.5, 0, Math.PI * 2);
-        gc.fillStyle = `rgba(0,245,255,${alpha * 0.7})`; gc.fill();
+        gc.fillStyle = `rgba(212,160,23,${alpha * 0.7})`; gc.fill();
       }
     });
 
@@ -959,7 +1011,7 @@ function spawnParticle() {
   el.style.cssText = `
     width:${size}px; height:${size}px;
     left:${Math.random()*100}vw;
-    background: ${Math.random() > 0.5 ? '#00f5ff' : '#7b2fff'};
+    background: ${Math.random() > 0.5 ? '#d4a017' : '#ffd700'};
     opacity: ${Math.random() * 0.6 + 0.1};
     animation-duration: ${Math.random()*15+10}s;
     animation-delay: ${Math.random()*5}s;
@@ -1001,7 +1053,7 @@ document.querySelectorAll('.stats-bar').forEach(el => countObs.observe(el));
 // === NAVBAR SCROLL ===
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('navbar');
-  nav.style.background = window.scrollY > 50 ? 'rgba(2,5,16,0.95)' : 'rgba(2,5,16,0.7)';
+  nav.style.background = window.scrollY > 50 ? 'rgba(10,8,0,0.95)' : 'rgba(10,8,0,0.7)';
 });
 
 // === TOAST ===
@@ -1064,6 +1116,209 @@ document.querySelectorAll('.service-card, .price-card').forEach(card => {
   card.addEventListener('mouseleave', () => {
     card.style.transform = '';
   });
+});
+</script>
+<!-- THREE.JS 3D MODELS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+function make3DScene(canvasId, buildScene) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+  camera.position.set(0, 0, 5);
+
+  // Warm gold lighting
+  const ambientLight = new THREE.AmbientLight(0x3d2800, 1.2);
+  scene.add(ambientLight);
+  const pointLight1 = new THREE.PointLight(0xffd700, 3, 20);
+  pointLight1.position.set(5, 5, 5);
+  scene.add(pointLight1);
+  const pointLight2 = new THREE.PointLight(0xc8860a, 2, 20);
+  pointLight2.position.set(-5, -3, 3);
+  scene.add(pointLight2);
+  const rimLight = new THREE.PointLight(0xf5c842, 1.5, 15);
+  rimLight.position.set(0, -5, -3);
+  scene.add(rimLight);
+
+  const goldMat = new THREE.MeshStandardMaterial({
+    color: 0xd4a017,
+    metalness: 0.95,
+    roughness: 0.1,
+    emissive: 0x3d2000,
+    emissiveIntensity: 0.2
+  });
+  const darkMat = new THREE.MeshStandardMaterial({
+    color: 0x1a0e00,
+    metalness: 0.8,
+    roughness: 0.3
+  });
+  const brightGold = new THREE.MeshStandardMaterial({
+    color: 0xffd700,
+    metalness: 1.0,
+    roughness: 0.05,
+    emissive: 0x553300,
+    emissiveIntensity: 0.3
+  });
+
+  const objects = buildScene(scene, goldMat, darkMat, brightGold);
+
+  let mouseX = 0, mouseY = 0;
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouseX = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    mouseY = -((e.clientY - r.top) / r.height - 0.5) * 2;
+  });
+
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.012;
+    objects.forEach((obj, i) => {
+      obj.rotation.y = t * (0.4 + i * 0.15) + mouseX * 0.4;
+      obj.rotation.x = Math.sin(t * 0.3) * 0.2 + mouseY * 0.2;
+    });
+    // Pulse light
+    pointLight1.intensity = 2.5 + Math.sin(t * 1.5) * 0.8;
+    renderer.render(scene, camera);
+  }
+  animate();
+}
+
+// === MODEL 1: INTERCONNECTED CUBE NETWORK (Web Architecture) ===
+make3DScene('model1', (scene, goldMat, darkMat, brightGold) => {
+  const group = new THREE.Group();
+
+  // Central cube
+  const coreGeo = new THREE.BoxGeometry(1, 1, 1);
+  const core = new THREE.Mesh(coreGeo, brightGold);
+  group.add(core);
+
+  // Wireframe overlay
+  const wireMat = new THREE.MeshBasicMaterial({ color: 0xffd700, wireframe: true, opacity: 0.3, transparent: true });
+  const wireCore = new THREE.Mesh(new THREE.BoxGeometry(1.02, 1.02, 1.02), wireMat);
+  group.add(wireCore);
+
+  // Orbiting smaller cubes
+  const orbitData = [
+    { r: 2.0, speed: 1.0, size: 0.35, axis: 'y' },
+    { r: 2.2, speed: -0.7, size: 0.28, axis: 'x' },
+    { r: 1.8, speed: 1.4, size: 0.22, axis: 'z' },
+  ];
+  const orbiters = orbitData.map(d => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(d.size, d.size, d.size), goldMat.clone());
+    group.add(m);
+    m.userData = d;
+    return m;
+  });
+
+  // Connecting lines
+  const lineMat = new THREE.LineBasicMaterial({ color: 0xd4a017, opacity: 0.4, transparent: true });
+  orbiters.forEach(orb => {
+    const pts = [new THREE.Vector3(0,0,0), orb.position];
+    const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+    const line = new THREE.Line(lineGeo, lineMat);
+    group.add(line);
+    orb.userData.line = line;
+    orb.userData.linePts = pts;
+  });
+
+  scene.add(group);
+
+  // Animate orbiters separately
+  const origAnimate = group.onBeforeRender;
+  let t2 = 0;
+  group.onBeforeRender = function() {
+    t2 += 0.015;
+    orbiters.forEach((orb, i) => {
+      const d = orb.userData;
+      orb.position.x = Math.cos(t2 * d.speed + i * 2) * d.r;
+      orb.position.y = Math.sin(t2 * d.speed * 0.7 + i) * 0.8;
+      orb.position.z = Math.sin(t2 * d.speed + i * 2) * d.r;
+      // Update line
+      if (d.linePts) {
+        d.linePts[1].copy(orb.position);
+        d.line.geometry.setFromPoints(d.linePts);
+      }
+    });
+  };
+
+  return [group];
+});
+
+// === MODEL 2: FLOATING TORUS KNOT + RINGS (Data Systems) ===
+make3DScene('model2', (scene, goldMat, darkMat, brightGold) => {
+  const group = new THREE.Group();
+
+  // Torus knot
+  const knotGeo = new THREE.TorusKnotGeometry(0.9, 0.28, 128, 16, 2, 3);
+  const knot = new THREE.Mesh(knotGeo, brightGold);
+  group.add(knot);
+
+  // Outer rings
+  const ringMat = new THREE.MeshStandardMaterial({ color: 0xc8860a, metalness: 0.9, roughness: 0.15, side: THREE.DoubleSide });
+  [1.8, 2.4].forEach((r, i) => {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r, 0.04, 12, 80), goldMat.clone());
+    ring.rotation.x = i === 0 ? Math.PI/4 : -Math.PI/5;
+    ring.rotation.z = i === 0 ? Math.PI/6 : Math.PI/3;
+    group.add(ring);
+  });
+
+  // Particles
+  const pts = [];
+  for (let i = 0; i < 120; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.random() * Math.PI;
+    const r = 2.2 + Math.random() * 0.6;
+    pts.push(r*Math.sin(phi)*Math.cos(theta), r*Math.sin(phi)*Math.sin(theta), r*Math.cos(phi));
+  }
+  const ptGeo = new THREE.BufferGeometry();
+  ptGeo.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
+  const ptMat = new THREE.PointsMaterial({ color: 0xffd700, size: 0.05 });
+  group.add(new THREE.Points(ptGeo, ptMat));
+
+  scene.add(group);
+  return [group];
+});
+
+// === MODEL 3: DIAMOND / OCTAHEDRON CROWN (Brand Identity) ===
+make3DScene('model3', (scene, goldMat, darkMat, brightGold) => {
+  const group = new THREE.Group();
+
+  // Main diamond
+  const diamondGeo = new THREE.OctahedronGeometry(1.2, 0);
+  const diamond = new THREE.Mesh(diamondGeo, brightGold);
+  group.add(diamond);
+
+  // Wireframe
+  const wMat = new THREE.MeshBasicMaterial({ color: 0xffd700, wireframe: true, opacity: 0.25, transparent: true });
+  group.add(new THREE.Mesh(new THREE.OctahedronGeometry(1.22, 0), wMat));
+
+  // Inner diamond rotated
+  const inner = new THREE.Mesh(new THREE.OctahedronGeometry(0.6, 0), goldMat.clone());
+  inner.rotation.y = Math.PI / 4;
+  group.add(inner);
+
+  // Orbiting icosahedra
+  for (let i = 0; i < 5; i++) {
+    const angle = (i / 5) * Math.PI * 2;
+    const ico = new THREE.Mesh(new THREE.IcosahedronGeometry(0.22, 0), goldMat.clone());
+    ico.position.set(Math.cos(angle) * 2.1, Math.sin(i) * 0.6, Math.sin(angle) * 2.1);
+    group.add(ico);
+  }
+
+  // Crown base ring
+  const crown = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.06, 8, 60), brightGold.clone());
+  crown.rotation.x = Math.PI / 2;
+  group.add(crown);
+
+  scene.add(group);
+  return [group];
 });
 </script>
 </body>
