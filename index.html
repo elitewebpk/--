@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EliteWebPK — Premium Web Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon: #00f5ff;
+    --neon2: #7b2fff;
+    --gold: #ffd700;
+    --dark: #020510;
+    --card-bg: rgba(0,245,255,0.04);
+    --border: rgba(0,245,255,0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: #e0f7ff;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  #cursor {
+    position: fixed; width: 18px; height: 18px; border: 2px solid var(--neon);
+    border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: screen;
+  }
+  #cursor-dot {
+    position: fixed; width: 5px; height: 5px; background: var(--neon);
+    border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px var(--neon);
+  }
+  body:hover #cursor { width: 18px; height: 18px; }
+  a:hover ~ #cursor, button:hover ~ #cursor { width: 36px; height: 36px; }
+
+  /* STAR CANVAS */
+  #starfield { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events: none; }
+
+  /* FLOATING PARTICLES */
+  .particle {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 1;
+    animation: floatParticle linear infinite;
+  }
+  @keyframes floatParticle {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(2,5,16,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.6rem; font-weight: 900;
+    letter-spacing: 0.3em;
+    background: linear-gradient(90deg, var(--neon), var(--neon2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+  .logo span { color: var(--gold); -webkit-text-fill-color: var(--gold); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    text-decoration: none; color: #a0c4cf;
+    font-family: 'Rajdhani'; font-weight: 600; font-size: 0.95rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  nav ul a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--neon); transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  nav ul a:hover { color: var(--neon); }
+  nav ul a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: transparent; border: 1px solid var(--neon);
+    color: var(--neon) !important; padding: 0.5rem 1.4rem;
+    font-family: 'Orbitron'; font-size: 0.7rem !important;
+    letter-spacing: 0.2em !important; cursor: pointer;
+    transition: all 0.3s !important;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .nav-cta:hover { background: var(--neon); color: #000 !important; -webkit-text-fill-color: #000 !important; }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; z-index: 10; padding: 0 2rem;
+    perspective: 1000px;
+  }
+  .hero-subtitle {
+    font-family: 'Orbitron'; font-size: 0.75rem;
+    letter-spacing: 0.5em; color: var(--neon);
+    margin-bottom: 1.5rem;
+    animation: fadeDown 1s ease both;
+  }
+  .hero-title {
+    font-family: 'Orbitron'; font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 900; line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeDown 1s 0.2s ease both;
+  }
+  .hero-title .line1 {
+    display: block;
+    background: linear-gradient(135deg, #fff 30%, var(--neon));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-title .line2 {
+    display: block;
+    background: linear-gradient(135deg, var(--neon2), var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-desc {
+    font-size: 1.15rem; color: #7da8b8; max-width: 560px;
+    line-height: 1.7; margin-bottom: 3rem;
+    animation: fadeDown 1s 0.4s ease both;
+    font-weight: 300; letter-spacing: 0.03em;
+  }
+  .hero-btns {
+    display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeDown 1s 0.6s ease both;
+  }
+  .btn-primary {
+    padding: 0.9rem 2.5rem;
+    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    border: none; color: #000; font-family: 'Orbitron';
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; cursor: pointer;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    position: relative; transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(0,245,255,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 0 50px rgba(0,245,255,0.6);
+  }
+  .btn-secondary {
+    padding: 0.9rem 2.5rem;
+    background: transparent; border: 1px solid var(--border);
+    color: #a0c4cf; font-family: 'Orbitron';
+    font-size: 0.75rem; letter-spacing: 0.2em; cursor: pointer;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--neon); color: var(--neon);
+    box-shadow: 0 0 20px rgba(0,245,255,0.2);
+    transform: translateY(-3px);
+  }
+
+  /* 3D ROTATING GLOBE */
+  .globe-container {
+    position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+    width: 280px; height: 280px; z-index: 5;
+    animation: fadeIn 2s 0.5s ease both;
+  }
+  @media (max-width: 900px) { .globe-container { display: none; } }
+
+  /* SCROLL INDICATOR */
+  .scroll-ind {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%); z-index: 10;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: fadeIn 2s 1.5s both;
+  }
+  .scroll-ind span { font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 0.3em; color: #456; }
+  .scroll-line {
+    width: 1px; height: 50px; background: linear-gradient(to bottom, var(--neon), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+  }
+
+  /* SECTIONS */
+  section { position: relative; z-index: 10; }
+
+  /* STATS BAR */
+  .stats-bar {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;
+    background: rgba(0,245,255,0.02);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Orbitron'; font-size: 2.5rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .stat-label { font-size: 0.85rem; letter-spacing: 0.2em; color: #567; text-transform: uppercase; margin-top: 0.3rem; }
+
+  /* SERVICES */
+  .services { padding: 8rem 4rem; }
+  .section-label {
+    font-family: 'Orbitron'; font-size: 0.65rem; letter-spacing: 0.5em;
+    color: var(--neon); text-transform: uppercase; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::before {
+    content: ''; display: inline-block; width: 30px; height: 1px; background: var(--neon);
+  }
+  .section-title {
+    font-family: 'Orbitron'; font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
+  }
+  .section-title em { font-style: normal; color: var(--neon); }
+  .section-desc { color: #567; max-width: 500px; line-height: 1.7; margin-bottom: 4rem; font-size: 1rem; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    position: relative; overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+  .service-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,245,255,0.08), rgba(123,47,255,0.08));
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .service-card::after {
+    content: ''; position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(0,245,255,0.1) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .service-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(0,245,255,0.4); }
+  .service-card:hover::before { opacity: 1; }
+  .service-card:hover::after { opacity: 1; }
+  .service-icon {
+    font-size: 2.5rem; margin-bottom: 1.5rem; display: block;
+    filter: drop-shadow(0 0 10px rgba(0,245,255,0.5));
+    transition: transform 0.3s;
+  }
+  .service-card:hover .service-icon { transform: scale(1.2) rotate(5deg); }
+  .service-num {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 0.2em;
+    color: rgba(0,245,255,0.2);
+  }
+  .service-title {
+    font-family: 'Orbitron'; font-size: 1rem; font-weight: 700;
+    color: #e0f7ff; margin-bottom: 1rem; letter-spacing: 0.05em;
+  }
+  .service-desc { color: #567; font-size: 0.9rem; line-height: 1.6; }
+  .service-arrow {
+    display: inline-block; margin-top: 1.5rem; color: var(--neon);
+    font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 0.2em;
+    transition: transform 0.3s;
+  }
+  .service-card:hover .service-arrow { transform: translateX(8px); }
+
+  /* PRICING */
+  .pricing { padding: 8rem 4rem; background: rgba(0,0,0,0.3); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .price-card {
+    border: 1px solid var(--border);
+    padding: 2.5rem; position: relative; overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(2,5,16,0.8);
+    clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 25px 100%, 0 calc(100% - 25px));
+  }
+  .price-card.featured {
+    border-color: rgba(0,245,255,0.5);
+    background: rgba(0,245,255,0.04);
+    transform: scale(1.03);
+  }
+  .price-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute; top: 0; right: 0;
+    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    color: #000; font-family: 'Orbitron'; font-size: 0.55rem;
+    letter-spacing: 0.2em; padding: 0.4rem 1rem;
+    clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .price-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(0,245,255,0.5); }
+  .price-card.featured:hover { transform: scale(1.05) translateY(-8px); }
+  .price-tier {
+    font-family: 'Orbitron'; font-size: 0.65rem; letter-spacing: 0.4em;
+    color: var(--neon); margin-bottom: 1rem; text-transform: uppercase;
+  }
+  .price-amount {
+    font-family: 'Orbitron'; font-size: 3rem; font-weight: 900; line-height: 1;
+    margin-bottom: 0.3rem; color: #fff;
+  }
+  .price-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 0.5rem; color: var(--neon); }
+  .price-currency { font-size: 0.85rem; color: #567; letter-spacing: 0.1em; margin-bottom: 2rem; }
+  .price-features { list-style: none; margin-bottom: 2rem; }
+  .price-features li {
+    padding: 0.6rem 0; border-bottom: 1px solid rgba(0,245,255,0.06);
+    font-size: 0.9rem; color: #8ab; display: flex; align-items: center; gap: 0.8rem;
+  }
+  .price-features li::before { content: '◆'; color: var(--neon); font-size: 0.5rem; flex-shrink: 0; }
+  .price-features li.disabled { color: #345; }
+  .price-features li.disabled::before { color: #234; }
+  .btn-price {
+    width: 100%; padding: 0.9rem;
+    background: transparent; border: 1px solid var(--border);
+    color: #a0c4cf; font-family: 'Orbitron'; font-size: 0.7rem;
+    letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  }
+  .btn-price:hover, .featured .btn-price {
+    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    border-color: transparent; color: #000;
+    box-shadow: 0 0 30px rgba(0,245,255,0.4);
+  }
+
+  /* PROCESS */
+  .process { padding: 8rem 4rem; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0; position: relative; margin-top: 4rem;
+  }
+  .process-steps::before {
+    content: ''; position: absolute; top: 2.5rem; left: 0; right: 0;
+    height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent);
+    z-index: 0;
+  }
+  .step {
+    text-align: center; padding: 0 1.5rem;
+    position: relative; z-index: 1;
+    transition: transform 0.3s;
+  }
+  .step:hover { transform: translateY(-10px); }
+  .step-num {
+    width: 5rem; height: 5rem; border: 1px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Orbitron'; font-size: 1.2rem; font-weight: 900;
+    color: var(--neon); background: var(--dark);
+    transition: all 0.4s;
+    box-shadow: 0 0 20px rgba(0,245,255,0.1);
+  }
+  .step:hover .step-num {
+    background: rgba(0,245,255,0.1);
+    box-shadow: 0 0 40px rgba(0,245,255,0.4);
+    border-color: var(--neon);
+  }
+  .step-title { font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; color: #e0f7ff; }
+  .step-desc { font-size: 0.85rem; color: #567; line-height: 1.5; }
+
+  /* CONTACT */
+  .contact { padding: 8rem 4rem; background: rgba(0,0,0,0.4); }
+  .contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .contact-form { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.2rem; text-align: left; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-group label {
+    font-family: 'Orbitron'; font-size: 0.6rem; letter-spacing: 0.3em;
+    color: var(--neon); text-transform: uppercase;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: rgba(0,245,255,0.03);
+    border: 1px solid var(--border);
+    color: #e0f7ff; font-family: 'Rajdhani'; font-size: 1rem;
+    padding: 0.9rem 1.2rem; outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .form-group select { clip-path: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--neon);
+    box-shadow: 0 0 15px rgba(0,245,255,0.15);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--dark); }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    background: rgba(0,0,0,0.5);
+  }
+  .footer-copy { font-size: 0.8rem; color: #345; letter-spacing: 0.1em; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.75rem; color: #456; text-decoration: none; letter-spacing: 0.1em; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--neon); }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-btn {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 100;
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; cursor: pointer; text-decoration: none;
+    box-shadow: 0 0 30px rgba(37,211,102,0.5);
+    animation: pulse 2s infinite;
+    transition: transform 0.3s;
+  }
+  .whatsapp-btn:hover { transform: scale(1.15); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 0 40px rgba(37,211,102,0.8); }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* GLOW LINE */
+  .glow-line {
+    height: 1px; background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    margin: 0; opacity: 0.4;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .services, .pricing, .process, .contact { padding: 5rem 1.5rem; }
+    .stats-bar { padding: 2rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* HEXAGON GRID BG */
+  .hex-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; opacity: 0.03; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpolygon fill='none' stroke='%2300f5ff' stroke-width='1' points='30 3 57 19 57 52 30 68 3 52 3 19'/%3E%3Cpolygon fill='none' stroke='%2300f5ff' stroke-width='1' points='30 71 57 87 57 104 30 104 3 104 3 87'/%3E%3C/svg%3E");
+  }
+
+  /* NOTIFICATION TOAST */
+  .toast {
+    position: fixed; bottom: 7rem; right: 2rem; z-index: 200;
+    background: rgba(0,245,255,0.1); border: 1px solid var(--neon);
+    color: var(--neon); font-family: 'Orbitron'; font-size: 0.7rem;
+    letter-spacing: 0.1em; padding: 1rem 1.5rem;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transform: translateX(200%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+  }
+  .toast.show { transform: translateX(0); }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
+
+<!-- HEX BG -->
+<div class="hex-bg"></div>
+
+<!-- STAR CANVAS -->
+<canvas id="starfield"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">Elite<span>Web</span>PK</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Start Project</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-subtitle">⬡ NEXT-GEN WEB AGENCY PAKISTAN — ELITEWEBPK</div>
+  <h1 class="hero-title">
+    <span class="line1">WE BUILD</span>
+    <span class="line2">DIGITAL WORLDS</span>
+  </h1>
+  <p class="hero-desc">Cutting-edge websites that don't just exist — they dominate. Premium web solutions crafted for Pakistani businesses at prices that make sense.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">LAUNCH PROJECT</button>
+    <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">EXPLORE SERVICES</button>
+  </div>
+  <!-- 3D GLOBE -->
+  <div class="globe-container">
+    <canvas id="globe" width="280" height="280"></canvas>
+  </div>
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <span class="stat-num" data-target="48">0</span>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num" data-target="100">0</span>
+    <div class="stat-label">Client Satisfaction %</div>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num" data-target="7">0</span>
+    <div class="stat-label">Days Avg Delivery</div>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num" data-target="24">0</span>
+    <div class="stat-label">Support Hours</div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">What We Build</div>
+  <h2 class="section-title">Our <em>Core Services</em></h2>
+  <p class="section-desc">Every project is a mission. We deploy battle-tested technology to engineer digital experiences that convert visitors into customers.</p>
+  <div class="services-grid">
+    <div class="service-card reveal" onclick="showToast('Business websites starting from Rs. 15,000')">
+      <span class="service-num">01</span>
+      <span class="service-icon">🌐</span>
+      <div class="service-title">BUSINESS WEBSITES</div>
+      <p class="service-desc">Professional, fast-loading websites that establish credibility and generate leads for your business 24/7.</p>
+      <span class="service-arrow">EXPLORE →</span>
+    </div>
+    <div class="service-card reveal" onclick="showToast('E-commerce stores starting from Rs. 35,000')">
+      <span class="service-num">02</span>
+      <span class="service-icon">🛒</span>
+      <div class="service-title">E-COMMERCE STORES</div>
+      <p class="service-desc">Full-featured online stores with secure payments, inventory management, and mobile-optimized shopping experiences.</p>
+      <span class="service-arrow">EXPLORE →</span>
+    </div>
+    <div class="service-card reveal" onclick="showToast('Landing pages starting from Rs. 8,000')">
+      <span class="service-num">03</span>
+      <span class="service-icon">🎯</span>
+      <div class="service-title">LANDING PAGES</div>
+      <p class="service-desc">High-converting single pages engineered specifically to capture leads and maximize your ad campaign ROI.</p>
+      <span class="service-arrow">EXPLORE →</span>
+    </div>
+    <div class="service-card reveal" onclick="showToast('Portfolios starting from Rs. 12,000')">
+      <span class="service-num">04</span>
+      <span class="service-icon">🎨</span>
+      <div class="service-title">PORTFOLIO SITES</div>
+      <p class="service-desc">Stunning showcases for freelancers, artists, and professionals that leave a lasting impression on clients.</p>
+      <span class="service-arrow">EXPLORE →</span>
+    </div>
+    <div class="service-card reveal" onclick="showToast('Restaurant sites starting from Rs. 18,000')">
+      <span class="service-num">05</span>
+      <span class="service-icon">🍽️</span>
+      <div class="service-title">RESTAURANT & LOCAL</div>
+      <p class="service-desc">Menu displays, booking systems, and Google Maps integration that drive foot traffic and online orders.</p>
+      <span class="service-arrow">EXPLORE →</span>
+    </div>
+    <div class="service-card reveal" onclick="showToast('SEO packages starting from Rs. 10,000/month')">
+      <span class="service-num">06</span>
+      <span class="service-icon">📈</span>
+      <div class="service-title">SEO & GROWTH</div>
+      <p class="service-desc">Get found on Google. We optimize your online presence to rank higher and attract organic traffic consistently.</p>
+      <span class="service-arrow">EXPLORE →</span>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div style="text-align:center; margin-bottom: 4rem;">
+    <div class="section-label" style="justify-content:center">Investment Tiers</div>
+    <h2 class="section-title" style="text-align:center">Transparent <em>Pricing</em><br>Built for Pakistan</h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-tier">STARTER</div>
+      <div class="price-amount"><sup>Rs.</sup>15,000</div>
+      <div class="price-currency">ONE-TIME PAYMENT</div>
+      <ul class="price-features">
+        <li>Up to 5 Pages</li>
+        <li>Mobile Responsive Design</li>
+        <li>Contact Form</li>
+        <li>Basic SEO Setup</li>
+        <li>1 Month Free Support</li>
+        <li class="disabled">E-commerce Features</li>
+        <li class="disabled">Custom Animations</li>
+      </ul>
+      <button class="btn-price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">GET STARTED</button>
+    </div>
+    <div class="price-card featured reveal">
+      <div class="price-tier">PROFESSIONAL</div>
+      <div class="price-amount"><sup>Rs.</sup>35,000</div>
+      <div class="price-currency">ONE-TIME PAYMENT</div>
+      <ul class="price-features">
+        <li>Up to 15 Pages</li>
+        <li>Premium UI/UX Design</li>
+        <li>Animations & Effects</li>
+        <li>Advanced SEO</li>
+        <li>Speed Optimization</li>
+        <li>3 Months Free Support</li>
+        <li>Google Analytics</li>
+      </ul>
+      <button class="btn-price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">MOST POPULAR</button>
+    </div>
+    <div class="price-card reveal">
+      <div class="price-tier">ENTERPRISE</div>
+      <div class="price-amount"><sup>Rs.</sup>75,000</div>
+      <div class="price-currency">ONE-TIME PAYMENT</div>
+      <ul class="price-features">
+        <li>Unlimited Pages</li>
+        <li>E-commerce Store</li>
+        <li>Payment Integration</li>
+        <li>Admin Dashboard</li>
+        <li>Custom Features</li>
+        <li>6 Months Free Support</li>
+        <li>Priority Development</li>
+      </ul>
+      <button class="btn-price" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">GO ENTERPRISE</button>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top: 2rem; color: #456; font-size: 0.85rem; letter-spacing: 0.1em;">All prices in PKR. Hosting & domain extra. Installment plans available.</p>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Your Project<br><em>Launch Sequence</em></h2>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">BRIEF</div>
+      <p class="step-desc">Tell us your vision, goals, and requirements over WhatsApp or call</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">DESIGN</div>
+      <p class="step-desc">We create a custom design mockup for your approval within 48 hours</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">BUILD</div>
+      <p class="step-desc">Full development with regular updates and revisions until perfect</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">LAUNCH</div>
+      <p class="step-desc">We deploy your site live and hand over full ownership and training</p>
+    </div>
+  </div>
+</section>
+
+<div class="glow-line"></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-label" style="justify-content:center">Start a Project</div>
+    <h2 class="section-title" style="text-align:center">Ready to <em>Launch?</em></h2>
+    <p style="color: #567; text-align:center; margin-bottom: 0; line-height:1.7">Fill in your details and we'll get back to you within 2 hours on WhatsApp.</p>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input id="f_name" type="text" placeholder="Muhammad Ali" required>
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input id="f_phone" type="tel" placeholder="+92 300 0000000" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Business / Project Name</label>
+        <input id="f_business" type="text" placeholder="My Business Pakistan">
+      </div>
+      <div class="form-group">
+        <label>Service Required</label>
+        <select id="f_service">
+          <option>Business Website — Rs. 15,000+</option>
+          <option>E-commerce Store — Rs. 35,000+</option>
+          <option>Landing Page — Rs. 8,000+</option>
+          <option>Portfolio — Rs. 12,000+</option>
+          <option>Restaurant Site — Rs. 18,000+</option>
+          <option>Enterprise Solution — Custom</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Project Brief</label>
+        <textarea id="f_brief" placeholder="Tell us about your project, budget, and timeline..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="clip-path: polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%); padding: 1.1rem; font-size: 0.8rem;">SEND TO WHATSAPP →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="logo" style="font-size: 1.2rem; margin-bottom: 0.5rem;">Elite<span>Web</span>PK</div>
+    <div class="footer-copy">© 2025 EliteWebPK. Pakistan.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/923075779653" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp-btn" href="https://wa.me/923075779653" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// === CURSOR ===
+const cursor = document.getElementById('cursor');
+const dot = document.getElementById('cursor-dot');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+});
+let cx = 0, cy = 0;
+function animCursor() {
+  cx += (mx - cx) * 0.15;
+  cy += (my - cy) * 0.15;
+  cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a, button, .service-card, .price-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.width = '36px'; cursor.style.height = '36px'; cursor.style.background = 'rgba(0,245,255,0.1)'; });
+  el.addEventListener('mouseleave', () => { cursor.style.width = '18px'; cursor.style.height = '18px'; cursor.style.background = 'transparent'; });
+});
+
+// === STARFIELD ===
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let W, H, stars = [], nebulas = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 300; i++) {
+    stars.push({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.5 + 0.3,
+      speed: Math.random() * 0.3 + 0.05,
+      brightness: Math.random(),
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      color: Math.random() > 0.8 ? '#a8d8ff' : Math.random() > 0.5 ? '#fff' : '#c8f0ff',
+      t: Math.random() * Math.PI * 2
+    });
+  }
+  nebulas = [];
+  for (let i = 0; i < 5; i++) {
+    nebulas.push({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 200 + 100,
+      hue: Math.random() > 0.5 ? '180' : '270',
+      alpha: Math.random() * 0.04 + 0.01
+    });
+  }
+}
+initStars();
+
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+function drawStars() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Nebulas
+  nebulas.forEach(n => {
+    const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r);
+    g.addColorStop(0, `hsla(${n.hue}, 80%, 60%, ${n.alpha})`);
+    g.addColorStop(1, 'transparent');
+    ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = g; ctx.fill();
+  });
+
+  // Shooting stars
+  if (Math.random() < 0.003) {
+    const sx = Math.random() * W;
+    const sy = Math.random() * H * 0.5;
+    ctx.beginPath();
+    ctx.moveTo(sx, sy);
+    ctx.lineTo(sx + 80, sy + 30);
+    ctx.strokeStyle = 'rgba(200,240,255,0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // Stars
+  stars.forEach(s => {
+    s.t += s.twinkleSpeed;
+    s.y -= s.speed;
+    if (s.y < -5) { s.y = H + 5; s.x = Math.random() * W; }
+    const alpha = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(s.t));
+
+    // Mouse parallax
+    const dx = (mouseX / W - 0.5) * s.speed * 15;
+    const dy = (mouseY / H - 0.5) * s.speed * 10;
+
+    ctx.beginPath();
+    ctx.arc(s.x + dx, s.y + dy, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.color.replace(')', `, ${alpha})`).replace('rgb', 'rgba').replace('#', '');
+
+    // Glow for brighter stars
+    if (s.r > 1.2) {
+      ctx.shadowBlur = 6; ctx.shadowColor = '#00f5ff';
+    } else {
+      ctx.shadowBlur = 0;
+    }
+    ctx.fillStyle = s.color + Math.floor(alpha * 255).toString(16).padStart(2, '0').slice(-2);
+    ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+  requestAnimationFrame(drawStars);
+}
+drawStars();
+
+// === 3D GLOBE ===
+const globe = document.getElementById('globe');
+if (globe) {
+  const gc = globe.getContext('2d');
+  const GW = 280, GH = 280, GR = 110;
+  let angle = 0, tilt = 0.4;
+
+  const dots = [];
+  for (let lat = -80; lat <= 80; lat += 15) {
+    for (let lng = -180; lng <= 180; lng += 15) {
+      dots.push({ lat: lat * Math.PI / 180, lng: lng * Math.PI / 180 });
+    }
+  }
+
+  const lines = [];
+  for (let lat = -60; lat <= 60; lat += 30) {
+    const pts = [];
+    for (let lng = -180; lng <= 180; lng += 5) {
+      pts.push({ lat: lat * Math.PI / 180, lng: lng * Math.PI / 180 });
+    }
+    lines.push(pts);
+  }
+  for (let lng = -180; lng <= 180; lng += 30) {
+    const pts = [];
+    for (let lat = -80; lat <= 80; lat += 5) {
+      pts.push({ lat: lat * Math.PI / 180, lng: lng * Math.PI / 180 });
+    }
+    lines.push(pts);
+  }
+
+  function project(lat, lng, ang) {
+    const x = GR * Math.cos(lat) * Math.sin(lng + ang);
+    const y = GR * (Math.sin(lat) * Math.cos(tilt) - Math.cos(lat) * Math.cos(lng + ang) * Math.sin(tilt));
+    const z = GR * (Math.sin(lat) * Math.sin(tilt) + Math.cos(lat) * Math.cos(lng + ang) * Math.cos(tilt));
+    return { x: GW / 2 + x, y: GH / 2 - y, z };
+  }
+
+  function drawGlobe() {
+    gc.clearRect(0, 0, GW, GH);
+    angle += 0.008;
+
+    // Glow
+    const grd = gc.createRadialGradient(GW/2, GH/2, GR*0.5, GW/2, GH/2, GR*1.4);
+    grd.addColorStop(0, 'rgba(0,245,255,0.06)');
+    grd.addColorStop(0.5, 'rgba(123,47,255,0.04)');
+    grd.addColorStop(1, 'transparent');
+    gc.beginPath(); gc.arc(GW/2, GH/2, GR*1.4, 0, Math.PI*2);
+    gc.fillStyle = grd; gc.fill();
+
+    // Outer ring
+    gc.beginPath(); gc.arc(GW/2, GH/2, GR, 0, Math.PI*2);
+    gc.strokeStyle = 'rgba(0,245,255,0.12)'; gc.lineWidth = 1; gc.stroke();
+
+    // Grid lines
+    lines.forEach(pts => {
+      let started = false;
+      gc.beginPath();
+      pts.forEach(p => {
+        const { x, y, z } = project(p.lat, p.lng, angle);
+        if (z > 0) {
+          const alpha = Math.min(1, z / GR * 0.6);
+          if (!started) { gc.moveTo(x, y); started = true; }
+          else gc.lineTo(x, y);
+        } else { started = false; if (gc.currentPath !== undefined) gc.beginPath(); }
+      });
+      gc.strokeStyle = 'rgba(0,245,255,0.08)'; gc.lineWidth = 0.5; gc.stroke();
+    });
+
+    // Dots
+    dots.forEach(d => {
+      const { x, y, z } = project(d.lat, d.lng, angle);
+      if (z > 0) {
+        const alpha = z / GR;
+        gc.beginPath(); gc.arc(x, y, 1.5, 0, Math.PI * 2);
+        gc.fillStyle = `rgba(0,245,255,${alpha * 0.7})`; gc.fill();
+      }
+    });
+
+    // Highlight dot (Pakistan)
+    const pak = project(30.37 * Math.PI/180, 69.34 * Math.PI/180, angle);
+    if (pak.z > 0) {
+      gc.beginPath(); gc.arc(pak.x, pak.y, 4, 0, Math.PI*2);
+      gc.fillStyle = 'rgba(255,215,0,0.9)'; gc.fill();
+      gc.beginPath(); gc.arc(pak.x, pak.y, 8, 0, Math.PI*2);
+      gc.strokeStyle = 'rgba(255,215,0,0.4)'; gc.lineWidth = 1; gc.stroke();
+    }
+
+    requestAnimationFrame(drawGlobe);
+  }
+  drawGlobe();
+}
+
+// === FLOATING PARTICLES ===
+function spawnParticle() {
+  const el = document.createElement('div');
+  el.className = 'particle';
+  const size = Math.random() * 4 + 1;
+  el.style.cssText = `
+    width:${size}px; height:${size}px;
+    left:${Math.random()*100}vw;
+    background: ${Math.random() > 0.5 ? '#00f5ff' : '#7b2fff'};
+    opacity: ${Math.random() * 0.6 + 0.1};
+    animation-duration: ${Math.random()*15+10}s;
+    animation-delay: ${Math.random()*5}s;
+    box-shadow: 0 0 ${size*2}px currentColor;
+  `;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 25000);
+}
+setInterval(spawnParticle, 800);
+
+// === SCROLL REVEAL ===
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// === COUNTER ANIMATION ===
+function animCount(el, target) {
+  let cur = 0;
+  const inc = target / 60;
+  const t = setInterval(() => {
+    cur += inc; if (cur >= target) { cur = target; clearInterval(t); }
+    el.textContent = Math.floor(cur) + (el.dataset.target == '100' ? '%' : '+');
+  }, 25);
+}
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const nums = e.target.querySelectorAll('.stat-num');
+      nums.forEach(n => animCount(n, parseInt(n.dataset.target)));
+      countObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stats-bar').forEach(el => countObs.observe(el));
+
+// === NAVBAR SCROLL ===
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.background = window.scrollY > 50 ? 'rgba(2,5,16,0.95)' : 'rgba(2,5,16,0.7)';
+});
+
+// === TOAST ===
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = '⬡ ' + msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ============================================================
+// ✅ YOUR WHATSAPP NUMBER — Change this to your real number
+//    Format: country code + number, no spaces or + sign
+//    Example Pakistan: 923001234567
+// ============================================================
+const YOUR_WHATSAPP = '923075779653';
+
+// === FORM SUBMIT → SEND DIRECTLY TO YOUR WHATSAPP ===
+function handleSubmit(e) {
+  e.preventDefault();
+
+  const name    = document.getElementById('f_name').value.trim();
+  const phone   = document.getElementById('f_phone').value.trim();
+  const biz     = document.getElementById('f_business').value.trim() || 'Not provided';
+  const service = document.getElementById('f_service').value;
+  const brief   = document.getElementById('f_brief').value.trim() || 'No details provided';
+
+  const msg =
+`🚀 *New Project Inquiry — EliteWebPK*
+
+👤 *Name:* ${name}
+📱 *Client WhatsApp:* ${phone}
+🏢 *Business:* ${biz}
+🛠 *Service:* ${service}
+
+📝 *Project Brief:*
+${brief}
+
+──────────────────
+Sent via EliteWebPK contact form`;
+
+  const encoded = encodeURIComponent(msg);
+  const waURL = `https://wa.me/${YOUR_WHATSAPP}?text=${encoded}`;
+
+  showToast('Opening WhatsApp... ✓');
+  e.target.reset();
+
+  // Open WhatsApp with pre-filled message
+  setTimeout(() => window.open(waURL, '_blank'), 600);
+}
+
+// === 3D CARD TILT ===
+document.querySelectorAll('.service-card, .price-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `translateY(-10px) scale(1.02) rotateX(${-y * 8}deg) rotateY(${x * 8}deg)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+</script>
+</body>
+</html>
